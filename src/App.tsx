@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <List labels={labels} />
+        <List labels={labels} setLabels={setLabels} />
         <Add labels={labels} setLabels={setLabels} />
         <img src={logo} className="App-logo" alt="logo" />
       </header>

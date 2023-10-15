@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.label-list-container li {
+  text-align: left;
+}
+
+.label-list-container .delete-handle {
+  margin-left: 5px;
+  border: 1px solid;
+  padding: 2px;
+  cursor: pointer;
+}
