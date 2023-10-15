@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-logo {
@@ -15,7 +19,6 @@
 
 .App-header {
   background-color: white;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,19 +41,43 @@
   }
 }
 
-.label-list-container {
-  li {
-    text-align: left;
+.page-content {
+  .label-list-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 0;
+
+    li {
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      column-gap: 5px;
+
+      input[type=text]:invalid {
+        box-shadow: 0 0 5px 1px red;
+      }
+
+      .delete-handle {
+        border: 1px solid;
+        padding: 2px;
+        cursor: pointer;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center
+        ;
+        &:hover {
+          border-color: #999;
+          color: #999;
+        }
+      }
+    }
   }
 
-  input[type=text]:invalid {
-    box-shadow: 0 0 5px 1px red;
-  }
-
-  .delete-handle {
-    margin-left: 5px;
-    border: 1px solid;
-    padding: 2px;
-    cursor: pointer;
+  .label-add-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
   }
 }
