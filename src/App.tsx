@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Add from "./label/add";
 import List from './label/list';
 import { useLocalStorage } from './util/localStorage';
