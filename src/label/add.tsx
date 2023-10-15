@@ -10,6 +10,17 @@ export default class Add extends Component<
             newLabel: ''
         };
     }
+
+    addLabel = (label: string) => {
+        console.log(`ading new label` + label);
+        this.props.setLabels(this.props.labels.concat(label));
+    }
+
+    onNewLabelSubmit = () => {
+        this.addLabel(this.state.newLabel);
+        this.setState({ newLabel: '' })
+    }
+
     render() {
         return (<div className="label-add-container">
             <input
@@ -22,14 +33,11 @@ export default class Add extends Component<
                         this.setState({ newLabel: event.target.value })
                     }
                 }
+                onKeyUp={(event) => event.key === 'Enter' && this.onNewLabelSubmit()}
             />
             <button
                 name="submit"
-                onClick={() => {
-                    console.log(`ading new label` + this.state.newLabel)
-                    this.props.setLabels(this.props.labels.concat(this.state.newLabel))
-                    this.setState({ newLabel: '' })
-                }}
+                onClick={this.onNewLabelSubmit}
             >add</button>
         </div>);
     }
