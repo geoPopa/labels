@@ -17,16 +17,25 @@ export default class Add extends Component<
     }
 
     onNewLabelSubmit = () => {
-        this.addLabel(this.state.newLabel);
-        this.setState({ newLabel: '' })
+        const newLabelEl = document.getElementById('new-label') as HTMLInputElement;
+
+        if (newLabelEl?.validity.valid) {
+            this.addLabel(this.state.newLabel);
+            this.setState({ newLabel: '' })
+        }
     }
 
     render() {
         return (<div className="label-add-container">
+            <label htmlFor="new-label">label</label>
             <input
+                id="new-label"
                 type="text"
                 name="entry-input"
                 value={this.state.newLabel}
+                placeholder="type new label"
+                required
+                pattern="^[a-zA-Z]+$"
                 onChange={
                     (event) => {
                         console.log(`state new label` + event.target.value)
