@@ -2,12 +2,13 @@ import { Component } from "react";
 
 export default class Add extends Component<
     { setLabels: CallableFunction, labels: string[] },
-    { newLabel: string }
+    { newLabel: string, isSubmitEnabled: boolean }
 > {
     constructor(props: any) {
         super(props);
         this.state = {
-            newLabel: ''
+            newLabel: '',
+            isSubmitEnabled: false
         };
     }
 
@@ -17,12 +18,15 @@ export default class Add extends Component<
     }
 
     onNewLabelSubmit = () => {
-        const newLabelEl = document.getElementById('new-label') as HTMLInputElement;
-
-        if (newLabelEl?.validity.valid) {
+        if (this.areInputsValid()) {
             this.addLabel(this.state.newLabel);
             this.setState({ newLabel: '' })
         }
+    }
+
+    areInputsValid = (): boolean => {
+        const newLabelEl = document.getElementById('new-label') as HTMLInputElement;
+        return newLabelEl?.validity.valid;
     }
 
     render() {
@@ -39,7 +43,7 @@ export default class Add extends Component<
                 onChange={
                     (event) => {
                         console.log(`state new label` + event.target.value)
-                        this.setState({ newLabel: event.target.value })
+                        this.setState({ newLabel: event.target.value, isSubmitEnabled: this.areInputsValid() })
                     }
                 }
                 onKeyUp={(event) => event.key === 'Enter' && this.onNewLabelSubmit()}
@@ -47,6 +51,7 @@ export default class Add extends Component<
             <button
                 name="submit"
                 onClick={this.onNewLabelSubmit}
+                disabled={!this.state.isSubmitEnabled}
             >add</button>
         </div>);
     }
